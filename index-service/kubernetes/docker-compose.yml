@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  indexservice:
+    image: ypoth/indexservice:latest 
+    ports:
+      - "8805:8805"
+    environment:
+       - "SPRING_PROFILES_ACTIVE=dev"

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: index-deployment-3 
+  labels:
+    app: index3 
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: index3
+  template:
+    metadata:
+      labels:
+        app: index3
+    spec:
+      containers:
+      - name: index3
+        image: ypoth/indexservice:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8805

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: index-service
+  namespace: artifact-demo
+  
+spec:
+  replicas: 0
+  
+  template:
+    
+    spec:
+      serviceAccountName: default
+      containers:
+        - name: index-service
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 180
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            
+       

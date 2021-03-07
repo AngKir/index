@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ${project.artifactId}
+  namespace: default
+spec:
+replicas: 1
+  template:
+    spec:
+      containers:
+        - name: ${project.artifactId}
+        ports:
+          - containerPort: 8805
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 180
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            
+               livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8805
+              scheme: HTTP
+            initialDelaySeconds: 180
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8805
+              scheme: HTTP
+            initialDelaySeconds: 20
+            
+            
+            
+            ports:
+          - containerPort: 8805
